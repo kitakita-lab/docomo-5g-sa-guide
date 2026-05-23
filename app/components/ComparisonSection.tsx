@@ -17,14 +17,14 @@ const rows: ComparisonRow[] = [
     category: "混雑時の安定性",
     icon: "👥",
     nsa: "4Gコアが詰まりやすい",
-    sa: "用途別に通信を整理できる",
+    sa: "用途別に通信を整理",
     fit: "sa",
   },
   {
     category: "ゲーム・動画の遅延",
     icon: "🎮",
     nsa: "数十ms程度",
-    sa: "大幅に改善（1〜5ms級）",
+    sa: "1〜5ms級に改善",
     fit: "sa",
   },
   {
@@ -37,29 +37,29 @@ const rows: ComparisonRow[] = [
   {
     category: "コアネットワーク",
     icon: "🖥️",
-    nsa: "4G EPC（既存）",
-    sa: "5G Core（新設）",
+    nsa: "4G EPC",
+    sa: "5G Core",
     fit: "sa",
   },
   {
-    category: "通信の専用レーン",
+    category: "専用レーン",
     icon: "🛣️",
-    nsa: "なし（全員が共有）",
-    sa: "あり（用途別に確保）",
+    nsa: "なし（共有）",
+    sa: "あり（用途別）",
     fit: "sa",
   },
   {
     category: "導入コスト",
     icon: "💰",
-    nsa: "低い（既存設備流用）",
+    nsa: "低い（設備流用）",
     sa: "高い（全新設）",
     fit: "nsa",
   },
   {
-    category: "将来の新サービス",
+    category: "将来サービス",
     icon: "🔮",
     nsa: "限定的",
-    sa: "幅広く対応できる",
+    sa: "幅広く対応可",
     fit: "sa",
   },
 ];
@@ -102,8 +102,37 @@ export default function ComparisonSection() {
           </p>
         </div>
 
+        {/* building metaphor comparison */}
+        <div className={`grid sm:grid-cols-2 gap-5 mb-10 ${isVisible ? "animate-fade-in-up delay-100" : "opacity-0"}`}>
+          <div className="p-6 rounded-2xl bg-amber-50 border border-amber-100">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-10 h-10 rounded-xl bg-amber-200 flex items-center justify-center text-xl shrink-0">🏠</div>
+              <div>
+                <p className="font-bold text-amber-800 text-sm">NSA ＝ 増築リフォーム</p>
+                <p className="text-xs text-amber-500 mt-0.5">古い土台に新しい部屋を追加</p>
+              </div>
+            </div>
+            <p className="text-xs text-amber-700 leading-relaxed">
+              築20年の家（4Gコア）の上に新しい部屋（5G無線）を増築。部屋は新しいが、水道・電気は古い設備のまま。混雑すると古い配線部分がボトルネックになりやすい。
+            </p>
+          </div>
+
+          <div className="p-6 rounded-2xl bg-red-50 border border-red-100">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-10 h-10 rounded-xl bg-red-200 flex items-center justify-center text-xl shrink-0">🏢</div>
+              <div>
+                <p className="font-bold text-red-800 text-sm">SA ＝ 完全新築ビル</p>
+                <p className="text-xs text-red-400 mt-0.5">土台から全部5G専用で設計</p>
+              </div>
+            </div>
+            <p className="text-xs text-red-700 leading-relaxed">
+              土台から設計した最新ビルに、最新の通信設備を完備。「エレベーター専用」「宅配専用」のように用途ごとに経路が整理されている。
+            </p>
+          </div>
+        </div>
+
         {/* use-case cards */}
-        <div className={`grid sm:grid-cols-2 gap-5 mb-14 ${isVisible ? "animate-fade-in-up delay-100" : "opacity-0"}`}>
+        <div className={`grid sm:grid-cols-2 gap-5 mb-14 ${isVisible ? "animate-fade-in-up delay-200" : "opacity-0"}`}>
           <div className="p-6 rounded-2xl bg-amber-50">
             <div className="flex items-center gap-3 mb-5">
               <div className="w-10 h-10 rounded-xl bg-amber-200 flex items-center justify-center text-xl shrink-0">🏗️</div>
@@ -147,67 +176,48 @@ export default function ComparisonSection() {
           <div className="grid grid-cols-7 gap-2 mb-3">
             <div className="col-span-2" />
             <div className="col-span-2 text-center">
-              <div className="px-3 py-1.5 rounded-xl bg-amber-100 text-amber-700 font-semibold text-xs">NSA</div>
+              <div className="px-3 py-1.5 rounded-xl bg-amber-50 text-amber-600 font-semibold text-xs">NSA</div>
             </div>
             <div className="col-span-1 flex items-center justify-center text-gray-200 text-base">vs</div>
             <div className="col-span-2 text-center">
-              <div className="px-3 py-1.5 rounded-xl bg-red-100 text-red-600 font-semibold text-xs">SA</div>
+              <div className="px-3 py-1.5 rounded-xl bg-red-50 text-red-500 font-semibold text-xs">SA</div>
             </div>
           </div>
         </div>
 
-        <div className="space-y-2">
+        <div className="space-y-2.5">
           {rows.map((row, i) => (
             <div
               key={row.category}
-              className={`grid grid-cols-7 gap-1 items-stretch rounded-xl overflow-hidden border border-gray-50
+              className={`grid grid-cols-7 gap-1 items-stretch rounded-xl overflow-hidden
                 ${isVisible ? `animate-fade-in-up delay-${Math.min((i + 2) * 80, 500)}` : "opacity-0"}`}
             >
-              <div className="col-span-2 flex items-center gap-2 p-3 bg-gray-50">
+              <div className="col-span-2 flex items-center gap-2 p-3 bg-gray-50 rounded-l-xl">
                 <span className="text-base shrink-0">{row.icon}</span>
-                <p className="text-xs text-gray-600 leading-tight">{row.category}</p>
+                <p className="text-xs text-gray-500 leading-tight">{row.category}</p>
               </div>
 
               <div
-                className="col-span-2 flex flex-col items-center justify-center p-2.5 text-center"
-                style={{ backgroundColor: row.fit === "nsa" ? "#fefcf3" : "#fff" }}
+                className="col-span-2 flex flex-col items-center justify-center p-3 text-center"
+                style={{ backgroundColor: row.fit === "nsa" ? "#fdfaf2" : "#fafafa" }}
               >
-                <p className={`text-xs leading-tight mb-0.5 ${row.fit === "nsa" ? "text-amber-600" : "text-gray-400"}`}>{row.nsa}</p>
+                <p className={`text-xs leading-snug mb-0.5 ${row.fit === "nsa" ? "text-amber-600" : "text-gray-400"}`}>{row.nsa}</p>
                 <FitBadge fit={row.fit} side="nsa" />
               </div>
 
-              <div className="col-span-1 flex items-center justify-center bg-white">
-                <div className="w-px h-5 bg-gray-100" />
+              <div className="col-span-1 flex items-center justify-center bg-gray-50/50">
+                <div className="w-px h-4 bg-gray-100" />
               </div>
 
               <div
-                className="col-span-2 flex flex-col items-center justify-center p-2.5 text-center"
-                style={{ backgroundColor: row.fit === "sa" ? "#fff7f7" : "#fff" }}
+                className="col-span-2 flex flex-col items-center justify-center p-3 text-center rounded-r-xl"
+                style={{ backgroundColor: row.fit === "sa" ? "#fff8f8" : "#fafafa" }}
               >
-                <p className={`text-xs leading-tight mb-0.5 ${row.fit === "sa" ? "text-red-500" : "text-gray-400"}`}>{row.sa}</p>
+                <p className={`text-xs leading-snug mb-0.5 ${row.fit === "sa" ? "text-red-400" : "text-gray-400"}`}>{row.sa}</p>
                 <FitBadge fit={row.fit} side="sa" />
               </div>
             </div>
           ))}
-        </div>
-
-        {/* highway metaphor */}
-        <div className={`mt-12 p-6 rounded-2xl bg-gray-50 ${isVisible ? "animate-fade-in-up delay-500" : "opacity-0"}`}>
-          <p className="text-sm font-semibold text-gray-700 text-center mb-5">🛣️ 道路で考えてみよう</p>
-          <div className="grid sm:grid-cols-2 gap-3">
-            <div className="bg-white rounded-xl p-4">
-              <p className="text-xs font-semibold text-amber-700 mb-1.5">🏗️ NSA ＝ 一般道</p>
-              <p className="text-xs text-gray-400 leading-relaxed">
-                みんなが同じ道を共有。ふだんは快適でも、イベントの日は全員が集中して渋滞が起きる。
-              </p>
-            </div>
-            <div className="bg-white rounded-xl p-4">
-              <p className="text-xs font-semibold text-red-600 mb-1.5">🏢 SA ＝ 専用レーンつき高速</p>
-              <p className="text-xs text-gray-400 leading-relaxed">
-                動画用・ゲーム用・通常用と、用途別に専用レーンがある状態。混雑しても各レーンが確保される。
-              </p>
-            </div>
-          </div>
         </div>
 
         {/* CTA */}

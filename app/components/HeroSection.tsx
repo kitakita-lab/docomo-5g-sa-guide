@@ -62,7 +62,7 @@ export default function HeroSection() {
   const copy = copies[current];
 
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-white px-6 py-24">
+    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-white px-6 py-16">
       {/* grid bg — Hero のみ・空気感レベル */}
       <div
         className="absolute inset-0 opacity-[0.018]"
@@ -113,7 +113,7 @@ export default function HeroSection() {
           {copy.heading}
         </h1>
 
-        <p className="text-base text-gray-400 leading-relaxed mb-10 max-w-md mx-auto">
+        <p className="text-base text-gray-400 leading-normal mb-10 max-w-md mx-auto">
           {copy.sub}
         </p>
 
@@ -128,16 +128,16 @@ export default function HeroSection() {
         </a>
       </div>
 
-      {/* theme pills — 左寄せ、ラベルなし、inactive は極薄 */}
-      <div className="relative z-10 w-full max-w-xl mx-auto mt-12 flex flex-wrap gap-2">
+      {/* theme pills */}
+      <div className="relative z-10 w-full max-w-md mx-auto mt-12 flex flex-wrap gap-2 justify-center">
         {copies.map((c, i) => (
           <button
             key={c.theme}
             onClick={() => goTo(i)}
             className={`px-3 py-1 rounded-full text-xs font-medium transition-all
               ${i === current
-                ? "bg-red-600 text-white"
-                : "text-gray-300 border border-gray-100 hover:text-gray-500 hover:border-gray-200"
+                ? "bg-red-600 text-white border border-red-600"
+                : "bg-white border border-gray-200 text-gray-500 hover:border-gray-300 hover:text-gray-700"
               }`}
           >
             {c.theme}
@@ -145,10 +145,11 @@ export default function HeroSection() {
         ))}
       </div>
 
-      {/* scroll hint */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce opacity-20">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-          <path d="M12 5v14M5 12l7 7 7-7" stroke="#374151" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+      {/* scroll hint — 空気レベル */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5">
+        <span className="text-[10px] text-gray-300 tracking-widest uppercase">Scroll</span>
+        <svg width="14" height="8" viewBox="0 0 14 8" fill="none">
+          <path d="M1 1l6 6 6-6" stroke="#d1d5db" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
       </div>
     </section>
