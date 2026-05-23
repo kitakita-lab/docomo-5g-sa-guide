@@ -36,21 +36,22 @@ export default function NavBar() {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300
         ${scrolled ? "bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm" : "bg-transparent"}`}
     >
-      <div className="max-w-4xl mx-auto px-4 h-14 flex items-center justify-between">
-        <a href="#" className="flex items-center gap-2 font-bold text-gray-900 text-sm">
+      <div className="max-w-4xl mx-auto px-5 h-14 flex items-center justify-between gap-4">
+        <a href="#" className="flex items-center gap-2 font-semibold text-gray-900 text-sm shrink-0">
           <span className="w-6 h-6 rounded-md bg-red-600 flex items-center justify-center text-white text-xs font-bold">5G</span>
-          5G SA ガイド
+          SA ガイド
         </a>
 
-        <div className="flex items-center gap-1">
+        {/* 横スクロール対応 */}
+        <div className="flex items-center gap-1 overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {sections.map(({ id, label }) => (
             <a
               key={id}
               href={`#${id}`}
-              className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors
+              className={`px-3 py-1.5 rounded-full text-sm font-medium whitespace-nowrap transition-colors
                 ${active === id
                   ? "bg-red-600 text-white"
-                  : "text-gray-500 hover:text-gray-800 hover:bg-gray-100"}`}
+                  : "text-gray-400 hover:text-gray-700 hover:bg-gray-100"}`}
             >
               {label}
             </a>

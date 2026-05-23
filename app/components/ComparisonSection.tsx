@@ -42,25 +42,18 @@ const rows: ComparisonRow[] = [
     fit: "sa",
   },
   {
-    category: "通信の「専用レーン」",
-    icon: "🔪",
+    category: "通信の専用レーン",
+    icon: "🛣️",
     nsa: "なし（全員が共有）",
     sa: "あり（用途別に確保）",
     fit: "sa",
   },
   {
-    category: "導入・展開コスト",
+    category: "導入コスト",
     icon: "💰",
     nsa: "低い（既存設備流用）",
     sa: "高い（全新設）",
     fit: "nsa",
-  },
-  {
-    category: "今すぐ使えるか",
-    icon: "⚡",
-    nsa: "はい（多くのエリア）",
-    sa: "エリア拡大中",
-    fit: "both",
   },
   {
     category: "将来の新サービス",
@@ -72,12 +65,7 @@ const rows: ComparisonRow[] = [
 ];
 
 function FitBadge({ fit, side }: { fit: Fit; side: "nsa" | "sa" }) {
-  if (fit === "both") {
-    return <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-gray-100 text-gray-500">どちらも</span>;
-  }
-  if (fit === side) {
-    return <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-green-100 text-green-700">✓ 得意</span>;
-  }
+  if (fit === side) return <span className="text-[9px] text-emerald-500 font-medium">✓</span>;
   return null;
 }
 
@@ -88,7 +76,7 @@ const nsaUseCases = [
 ];
 
 const saUseCases = [
-  { emoji: "🎪", text: "ライブ・フェス・イベントでも安定させたい" },
+  { emoji: "🎪", text: "ライブ・フェス会場でも安定して使いたい" },
   { emoji: "🎮", text: "オンラインゲームのラグをなくしたい" },
   { emoji: "📹", text: "動画・ライブ配信を途切れさせたくない" },
   { emoji: "🔮", text: "これからの新しい5Gサービスを使いたい" },
@@ -98,58 +86,55 @@ export default function ComparisonSection() {
   const { ref, isVisible } = useScrollAnimation();
 
   return (
-    <section id="comparison" className="py-20 px-4 bg-white" ref={ref}>
-      <div className="max-w-4xl mx-auto">
+    <section id="comparison" className="py-28 px-6 bg-white" ref={ref}>
+      <div className="max-w-3xl mx-auto">
 
-        {/* header */}
-        <div className={`text-center mb-14 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gray-100 text-gray-600 text-sm font-medium mb-4 border border-gray-200">
+        {/* section header */}
+        <div className={`text-center mb-16 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gray-100 text-gray-400 text-xs font-medium mb-5 tracking-widest uppercase">
             Section 03
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-5">
             NSA vs SA — 向いている用途を知ろう
           </h2>
-          <p className="text-lg text-gray-500 max-w-xl mx-auto leading-relaxed">
-            どちらが「勝ち」ではなく、<strong>目的と場面に応じた使い分け</strong>が大事。
-            あなたのライフスタイルに合う5Gはどちら？
+          <p className="text-base text-gray-400 max-w-md mx-auto leading-relaxed">
+            どちらが「勝ち」ではなく、<strong className="text-gray-600">目的と場面に応じた使い分け</strong>が大事。
           </p>
         </div>
 
-        {/* use-case visual (top) */}
-        <div className={`grid sm:grid-cols-2 gap-6 mb-12 ${isVisible ? "animate-fade-in-up delay-100" : "opacity-0"}`}>
-          {/* NSA card */}
-          <div className="p-6 rounded-3xl bg-amber-50 border-2 border-amber-200">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-12 h-12 rounded-2xl bg-amber-200 flex items-center justify-center text-2xl shrink-0">🏗️</div>
+        {/* use-case cards */}
+        <div className={`grid sm:grid-cols-2 gap-5 mb-14 ${isVisible ? "animate-fade-in-up delay-100" : "opacity-0"}`}>
+          <div className="p-6 rounded-2xl bg-amber-50">
+            <div className="flex items-center gap-3 mb-5">
+              <div className="w-10 h-10 rounded-xl bg-amber-200 flex items-center justify-center text-xl shrink-0">🏗️</div>
               <div>
-                <div className="font-bold text-lg text-amber-800">NSA が向いている</div>
-                <div className="text-xs text-amber-600">今すぐ・広く・手軽に</div>
+                <p className="font-bold text-amber-800">NSA が向いている</p>
+                <p className="text-xs text-amber-500">今すぐ・広く・手軽に</p>
               </div>
             </div>
             <ul className="space-y-3">
               {nsaUseCases.map((u) => (
-                <li key={u.text} className="flex items-start gap-3">
-                  <span className="text-xl shrink-0">{u.emoji}</span>
-                  <span className="text-sm text-amber-800 leading-snug">{u.text}</span>
+                <li key={u.text} className="flex items-start gap-2.5">
+                  <span className="text-lg shrink-0 leading-tight">{u.emoji}</span>
+                  <span className="text-sm text-amber-700 leading-snug">{u.text}</span>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* SA card */}
-          <div className="p-6 rounded-3xl bg-red-50 border-2 border-red-200">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-12 h-12 rounded-2xl bg-red-200 flex items-center justify-center text-2xl shrink-0">🏢</div>
+          <div className="p-6 rounded-2xl bg-red-50">
+            <div className="flex items-center gap-3 mb-5">
+              <div className="w-10 h-10 rounded-xl bg-red-200 flex items-center justify-center text-xl shrink-0">🏢</div>
               <div>
-                <div className="font-bold text-lg text-red-800">SA が向いている</div>
-                <div className="text-xs text-red-600">混雑・安定・将来サービス</div>
+                <p className="font-bold text-red-800">SA が向いている</p>
+                <p className="text-xs text-red-400">混雑・安定・将来サービス</p>
               </div>
             </div>
             <ul className="space-y-3">
               {saUseCases.map((u) => (
-                <li key={u.text} className="flex items-start gap-3">
-                  <span className="text-xl shrink-0">{u.emoji}</span>
-                  <span className="text-sm text-red-800 leading-snug">{u.text}</span>
+                <li key={u.text} className="flex items-start gap-2.5">
+                  <span className="text-lg shrink-0 leading-tight">{u.emoji}</span>
+                  <span className="text-sm text-red-700 leading-snug">{u.text}</span>
                 </li>
               ))}
             </ul>
@@ -158,48 +143,48 @@ export default function ComparisonSection() {
 
         {/* comparison table */}
         <div className={`mb-3 ${isVisible ? "animate-fade-in-up delay-200" : "opacity-0"}`}>
-          <h3 className="text-base font-bold text-gray-600 text-center mb-4">項目別くらべてみる</h3>
+          <p className="text-sm text-gray-400 text-center mb-5">項目別くらべてみる</p>
           <div className="grid grid-cols-7 gap-2 mb-3">
             <div className="col-span-2" />
             <div className="col-span-2 text-center">
-              <div className="px-4 py-2 rounded-xl bg-amber-100 text-amber-700 font-bold text-sm border border-amber-200">NSA</div>
+              <div className="px-3 py-1.5 rounded-xl bg-amber-100 text-amber-700 font-semibold text-xs">NSA</div>
             </div>
-            <div className="col-span-1 flex items-center justify-center text-gray-300 text-lg font-light">vs</div>
+            <div className="col-span-1 flex items-center justify-center text-gray-200 text-base">vs</div>
             <div className="col-span-2 text-center">
-              <div className="px-4 py-2 rounded-xl bg-red-100 text-red-700 font-bold text-sm border border-red-200">SA</div>
+              <div className="px-3 py-1.5 rounded-xl bg-red-100 text-red-600 font-semibold text-xs">SA</div>
             </div>
           </div>
         </div>
 
-        <div className="space-y-2.5">
+        <div className="space-y-2">
           {rows.map((row, i) => (
             <div
               key={row.category}
-              className={`grid grid-cols-7 gap-2 items-stretch rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow
-                ${isVisible ? `animate-fade-in-up delay-${Math.min((i + 2) * 80, 600)}` : "opacity-0"}`}
+              className={`grid grid-cols-7 gap-1 items-stretch rounded-xl overflow-hidden border border-gray-50
+                ${isVisible ? `animate-fade-in-up delay-${Math.min((i + 2) * 80, 500)}` : "opacity-0"}`}
             >
-              <div className="col-span-2 flex items-center gap-2 p-3 bg-gray-50 border-r border-gray-100">
-                <span className="text-xl shrink-0">{row.icon}</span>
-                <div className="text-xs font-semibold text-gray-700 leading-tight">{row.category}</div>
+              <div className="col-span-2 flex items-center gap-2 p-3 bg-gray-50">
+                <span className="text-base shrink-0">{row.icon}</span>
+                <p className="text-xs text-gray-600 leading-tight">{row.category}</p>
               </div>
 
-              <div className={`col-span-2 flex flex-col items-center justify-center p-3 text-center
-                ${row.fit === "nsa" ? "bg-amber-50" : "bg-white"}`}>
-                <div className={`text-xs font-medium leading-tight mb-1 ${row.fit === "nsa" ? "text-amber-800" : "text-gray-500"}`}>
-                  {row.nsa}
-                </div>
+              <div
+                className="col-span-2 flex flex-col items-center justify-center p-2.5 text-center"
+                style={{ backgroundColor: row.fit === "nsa" ? "#fefcf3" : "#fff" }}
+              >
+                <p className={`text-xs leading-tight mb-0.5 ${row.fit === "nsa" ? "text-amber-600" : "text-gray-400"}`}>{row.nsa}</p>
                 <FitBadge fit={row.fit} side="nsa" />
               </div>
 
               <div className="col-span-1 flex items-center justify-center bg-white">
-                <div className="w-px h-8 bg-gray-200" />
+                <div className="w-px h-5 bg-gray-100" />
               </div>
 
-              <div className={`col-span-2 flex flex-col items-center justify-center p-3 text-center
-                ${row.fit === "sa" ? "bg-red-50" : "bg-white"}`}>
-                <div className={`text-xs font-medium leading-tight mb-1 ${row.fit === "sa" ? "text-red-700" : "text-gray-500"}`}>
-                  {row.sa}
-                </div>
+              <div
+                className="col-span-2 flex flex-col items-center justify-center p-2.5 text-center"
+                style={{ backgroundColor: row.fit === "sa" ? "#fff7f7" : "#fff" }}
+              >
+                <p className={`text-xs leading-tight mb-0.5 ${row.fit === "sa" ? "text-red-500" : "text-gray-400"}`}>{row.sa}</p>
                 <FitBadge fit={row.fit} side="sa" />
               </div>
             </div>
@@ -207,37 +192,30 @@ export default function ComparisonSection() {
         </div>
 
         {/* highway metaphor */}
-        <div className={`mt-12 p-6 rounded-3xl bg-gray-50 border border-gray-100 ${isVisible ? "animate-fade-in-up delay-500" : "opacity-0"}`}>
-          <div className="text-center mb-5">
-            <div className="text-lg font-bold text-gray-800 mb-1">🛣️ 道路で考えてみよう</div>
-            <div className="text-xs text-gray-400">ネットワークの仕組みを身近なたとえで</div>
-          </div>
-          <div className="grid sm:grid-cols-2 gap-4">
-            <div className="bg-amber-50 rounded-2xl p-4 border border-amber-200">
-              <div className="text-sm font-bold text-amber-800 mb-2">🏗️ NSA ＝ 一般道</div>
-              <p className="text-xs text-amber-700 leading-relaxed">
-                みんなが同じ道を共有している状態。ふだんは快適でも、
-                イベントの日は全員が同じ道に集中して渋滞が起きる。
+        <div className={`mt-12 p-6 rounded-2xl bg-gray-50 ${isVisible ? "animate-fade-in-up delay-500" : "opacity-0"}`}>
+          <p className="text-sm font-semibold text-gray-700 text-center mb-5">🛣️ 道路で考えてみよう</p>
+          <div className="grid sm:grid-cols-2 gap-3">
+            <div className="bg-white rounded-xl p-4">
+              <p className="text-xs font-semibold text-amber-700 mb-1.5">🏗️ NSA ＝ 一般道</p>
+              <p className="text-xs text-gray-400 leading-relaxed">
+                みんなが同じ道を共有。ふだんは快適でも、イベントの日は全員が集中して渋滞が起きる。
               </p>
             </div>
-            <div className="bg-red-50 rounded-2xl p-4 border border-red-200">
-              <div className="text-sm font-bold text-red-800 mb-2">🏢 SA ＝ 専用レーンつき高速道路</div>
-              <p className="text-xs text-red-700 leading-relaxed">
-                動画用・ゲーム用・通常用と、用途別に専用レーンがある状態。
-                混雑しても各レーンが確保されているので安定しやすい。
+            <div className="bg-white rounded-xl p-4">
+              <p className="text-xs font-semibold text-red-600 mb-1.5">🏢 SA ＝ 専用レーンつき高速</p>
+              <p className="text-xs text-gray-400 leading-relaxed">
+                動画用・ゲーム用・通常用と、用途別に専用レーンがある状態。混雑しても各レーンが確保される。
               </p>
             </div>
           </div>
         </div>
 
         {/* CTA */}
-        <div className={`mt-8 text-center p-8 rounded-3xl bg-gradient-to-br from-gray-900 to-gray-800 text-white ${isVisible ? "animate-fade-in-up delay-600" : "opacity-0"}`}>
-          <div className="text-2xl mb-3">💡</div>
-          <h3 className="text-xl font-bold mb-3">NSAは橋渡し。SAが「本物の5G」体験へ。</h3>
-          <p className="text-gray-300 text-sm leading-relaxed max-w-md mx-auto">
+        <div className={`mt-8 p-8 rounded-2xl bg-gray-900 text-white text-center ${isVisible ? "animate-fade-in-up delay-600" : "opacity-0"}`}>
+          <p className="text-lg font-bold mb-3">NSAは橋渡し。SAが「本物の5G」体験へ。</p>
+          <p className="text-gray-400 text-sm leading-relaxed max-w-md mx-auto">
             NSAは4Gから5Gへの移行を支えた立役者。
-            SAは「ライブ会場でも・ゲームでも・動画でも安定する5G」を実現する、
-            次のステージです。ドコモは両者を段階的に展開中です。
+            SAは「ライブ会場でも・ゲームでも・動画でも安定する5G」を実現する、次のステージです。
           </p>
         </div>
 
