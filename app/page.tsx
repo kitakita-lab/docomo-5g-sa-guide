@@ -4,6 +4,7 @@ import ExperienceSection from "./components/ExperienceSection";
 import NSASection from "./components/NSASection";
 import SASection from "./components/SASection";
 import ComparisonSection from "./components/ComparisonSection";
+import FAQSection from "./components/FAQSection";
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
         <NSASection />
         <SASection />
         <ComparisonSection />
+        <FAQSection />
       </main>
       <footer className="py-8 px-4 bg-gray-900 text-center">
         <p className="text-gray-400 text-sm">

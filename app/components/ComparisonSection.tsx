@@ -220,15 +220,6 @@ export default function ComparisonSection() {
           ))}
         </div>
 
-        {/* CTA */}
-        <div className={`mt-8 p-8 rounded-2xl bg-gray-900 text-white text-center ${isVisible ? "animate-fade-in-up delay-600" : "opacity-0"}`}>
-          <p className="text-lg font-bold mb-3">NSAは橋渡し。SAが「本物の5G」体験へ。</p>
-          <p className="text-gray-400 text-sm leading-relaxed max-w-md mx-auto">
-            NSAは4Gから5Gへの移行を支えた立役者。
-            SAは「ライブ会場でも・ゲームでも・動画でも安定する5G」を実現する、次のステージです。
-          </p>
-        </div>
-
       </div>
     </section>
   );
