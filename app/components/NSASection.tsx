@@ -131,7 +131,7 @@ export default function NSASection() {
 
   return (
     <section id="nsa" className="py-28 px-6 bg-white" ref={ref}>
-      <div className="max-w-3xl mx-auto">
+      <div className={`max-w-3xl mx-auto transition-opacity duration-700 ease-out ${isVisible ? "opacity-100" : "opacity-0"}`}>
 
         {/* section header */}
         <div className={`text-center mb-16 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
@@ -143,7 +143,7 @@ export default function NSASection() {
           </h2>
           <p className="text-base text-gray-400 max-w-md mx-auto leading-relaxed">
             <span className="text-amber-600 font-semibold">古い土台に新しい部屋を追加</span>したイメージ。
-            4Gのコアネットワークを活かしたまま5G電波だけを追加する方式です。
+            4Gの既存設備を活かして素早く5Gを普及させるための、現実的で合理的な方式です。
           </p>
         </div>
 

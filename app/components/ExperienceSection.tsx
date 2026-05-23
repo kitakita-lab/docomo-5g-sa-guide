@@ -164,7 +164,7 @@ export default function ExperienceSection() {
 
   return (
     <section id="experience" className="py-28 px-6 bg-gray-50" ref={ref}>
-      <div className="max-w-3xl mx-auto">
+      <div className={`max-w-3xl mx-auto transition-opacity duration-700 ease-out ${isVisible ? "opacity-100" : "opacity-0"}`}>
 
         {/* header */}
         <div className={`text-center mb-14 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
@@ -182,7 +182,7 @@ export default function ExperienceSection() {
           {scenarios.map((s, i) => (
             <div
               key={s.scene}
-              className={`bg-white rounded-2xl p-4 hover:shadow-sm transition-shadow
+              className={`bg-white rounded-2xl p-4 hover:-translate-y-0.5 hover:shadow-sm transition duration-200
                 ${isVisible ? `animate-fade-in-up delay-${Math.min(i * 100 + 100, 500)}` : "opacity-0"}`}
             >
               <div className="flex items-center gap-1.5 mb-2">

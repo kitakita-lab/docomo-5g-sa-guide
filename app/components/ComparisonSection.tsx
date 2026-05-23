@@ -87,7 +87,7 @@ export default function ComparisonSection() {
 
   return (
     <section id="comparison" className="py-28 px-6 bg-white" ref={ref}>
-      <div className="max-w-3xl mx-auto">
+      <div className={`max-w-3xl mx-auto transition-opacity duration-700 ease-out ${isVisible ? "opacity-100" : "opacity-0"}`}>
 
         {/* section header */}
         <div className={`text-center mb-16 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
@@ -109,11 +109,11 @@ export default function ComparisonSection() {
               <div className="w-10 h-10 rounded-xl bg-amber-200 flex items-center justify-center text-xl shrink-0">🏠</div>
               <div>
                 <p className="font-bold text-amber-800 text-sm">NSA ＝ 増築リフォーム</p>
-                <p className="text-xs text-amber-500 mt-0.5">古い土台に新しい部屋を追加</p>
+                <p className="text-xs text-amber-500 mt-0.5">普及優先の現実的な選択</p>
               </div>
             </div>
             <p className="text-xs text-amber-700 leading-relaxed">
-              築20年の家（4Gコア）の上に新しい部屋（5G無線）を増築。部屋は新しいが、水道・電気は古い設備のまま。混雑すると古い配線部分がボトルネックになりやすい。
+              4Gの既存設備を活かして素早く5Gを普及させてきた、合理的な方式。部屋は新しいが水道・電気は古い設備のまま、混雑すると古い配線がボトルネックになりやすい。
             </p>
           </div>
 
@@ -122,18 +122,18 @@ export default function ComparisonSection() {
               <div className="w-10 h-10 rounded-xl bg-red-200 flex items-center justify-center text-xl shrink-0">🏢</div>
               <div>
                 <p className="font-bold text-red-800 text-sm">SA ＝ 完全新築ビル</p>
-                <p className="text-xs text-red-400 mt-0.5">土台から全部5G専用で設計</p>
+                <p className="text-xs text-red-400 mt-0.5">5G本格活用の次世代構成</p>
               </div>
             </div>
             <p className="text-xs text-red-700 leading-relaxed">
-              土台から設計した最新ビルに、最新の通信設備を完備。「エレベーター専用」「宅配専用」のように用途ごとに経路が整理されている。
+              土台から設計した最新ビル。5Gを本格活用するための次世代構成で、「エレベーター専用」「宅配専用」のように用途ごとに経路が整理されている。
             </p>
           </div>
         </div>
 
         {/* use-case cards */}
         <div className={`grid sm:grid-cols-2 gap-5 mb-14 ${isVisible ? "animate-fade-in-up delay-200" : "opacity-0"}`}>
-          <div className="p-6 rounded-2xl bg-amber-50">
+          <div className="p-6 rounded-2xl bg-amber-50 hover:-translate-y-0.5 hover:shadow-sm transition duration-200">
             <div className="flex items-center gap-3 mb-5">
               <div className="w-10 h-10 rounded-xl bg-amber-200 flex items-center justify-center text-xl shrink-0">🏗️</div>
               <div>
@@ -151,7 +151,7 @@ export default function ComparisonSection() {
             </ul>
           </div>
 
-          <div className="p-6 rounded-2xl bg-red-50">
+          <div className="p-6 rounded-2xl bg-red-50 hover:-translate-y-0.5 hover:shadow-sm transition duration-200">
             <div className="flex items-center gap-3 mb-5">
               <div className="w-10 h-10 rounded-xl bg-red-200 flex items-center justify-center text-xl shrink-0">🏢</div>
               <div>
@@ -194,14 +194,14 @@ export default function ComparisonSection() {
             >
               <div className="col-span-2 flex items-center gap-2 p-3 bg-gray-50 rounded-l-xl">
                 <span className="text-base shrink-0">{row.icon}</span>
-                <p className="text-xs text-gray-500 leading-tight">{row.category}</p>
+                <p className="text-xs text-gray-700 leading-tight">{row.category}</p>
               </div>
 
               <div
                 className="col-span-2 flex flex-col items-center justify-center p-3 text-center"
-                style={{ backgroundColor: row.fit === "nsa" ? "#fdfaf2" : "#fafafa" }}
+                style={{ backgroundColor: row.fit === "nsa" ? "#fef3c7" : "#ffffff" }}
               >
-                <p className={`text-xs leading-snug mb-0.5 ${row.fit === "nsa" ? "text-amber-600" : "text-gray-400"}`}>{row.nsa}</p>
+                <p className="text-xs leading-snug mb-0.5 text-gray-700">{row.nsa}</p>
                 <FitBadge fit={row.fit} side="nsa" />
               </div>
 
@@ -211,9 +211,9 @@ export default function ComparisonSection() {
 
               <div
                 className="col-span-2 flex flex-col items-center justify-center p-3 text-center rounded-r-xl"
-                style={{ backgroundColor: row.fit === "sa" ? "#fff8f8" : "#fafafa" }}
+                style={{ backgroundColor: row.fit === "sa" ? "#ffe4e6" : "#ffffff" }}
               >
-                <p className={`text-xs leading-snug mb-0.5 ${row.fit === "sa" ? "text-red-400" : "text-gray-400"}`}>{row.sa}</p>
+                <p className="text-xs leading-snug mb-0.5 text-gray-700">{row.sa}</p>
                 <FitBadge fit={row.fit} side="sa" />
               </div>
             </div>
