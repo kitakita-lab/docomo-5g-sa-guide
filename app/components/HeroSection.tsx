@@ -119,7 +119,7 @@ export default function HeroSection() {
 
         <a
           href="#experience"
-          className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-gray-900 text-white font-medium text-sm hover:bg-gray-700 active:scale-95 transition-all"
+          className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-gray-900 text-white font-medium text-sm hover:brightness-105 active:scale-95 transition-all duration-200"
         >
           あるある体験を見る
           <svg width="16" height="16" viewBox="0 0 20 20" fill="none">

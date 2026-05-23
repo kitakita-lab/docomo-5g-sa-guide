@@ -93,7 +93,7 @@ export default function SASection() {
 
   return (
     <section id="sa" className="py-28 px-6 bg-gray-50" ref={ref}>
-      <div className="max-w-3xl mx-auto">
+      <div className={`max-w-3xl mx-auto transition-opacity duration-700 ease-out ${isVisible ? "opacity-100" : "opacity-0"}`}>
 
         {/* section header */}
         <div className={`text-center mb-16 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
@@ -105,7 +105,7 @@ export default function SASection() {
           </h2>
           <p className="text-base text-gray-400 max-w-md mx-auto leading-relaxed">
             <span className="text-red-600 font-semibold">土台から全部新築</span>したイメージ。
-            5Gの無線もコアも全部5G専用で構成された、真のアーキテクチャ。
+            5Gを本格活用するための次世代構成。無線もコアも全部5G専用で設計されています。
           </p>
         </div>
 
@@ -156,7 +156,7 @@ export default function SASection() {
           {benefits.map((b, i) => (
             <div
               key={b.title}
-              className={`flex gap-3 p-5 rounded-2xl bg-white border border-gray-100
+              className={`flex gap-3 p-5 rounded-2xl bg-white border border-gray-100 hover:-translate-y-0.5 hover:shadow-sm transition duration-200
                 ${isVisible ? `animate-fade-in-up delay-${(i + 3) * 100}` : "opacity-0"}`}
             >
               <div className="text-2xl shrink-0">{b.icon}</div>
