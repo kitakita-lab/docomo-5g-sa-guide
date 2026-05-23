@@ -15,6 +15,13 @@ export default function NavBar() {
   const [active, setActive] = useState("");
 
   useEffect(() => {
+    // 常にページ最上部から開始: scroll restoration を無効化し hash をクリア
+    if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+    if (window.location.hash) {
+      window.history.replaceState(null, "", window.location.pathname);
+    }
+    window.scrollTo(0, 0);
+
     const onScroll = () => {
       setScrolled(window.scrollY > 60);
 
@@ -56,6 +63,10 @@ export default function NavBar() {
               <a
                 key={id}
                 href={`#${id}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+                }}
                 className={`shrink-0 whitespace-nowrap px-3 py-2 rounded-full text-sm font-medium transition-colors
                   ${active === id
                     ? "bg-red-600 text-white"
