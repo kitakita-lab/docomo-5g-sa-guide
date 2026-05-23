@@ -1,87 +1,70 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState } from "react";
 
 const copies = [
   {
-    kicker: "5G SA 入門ガイド",
     heading: (
       <>
-        人混みでも、
-        <br />
+        人混みでも、<br />
         <span className="text-red-600">つながりやすく</span>。
       </>
     ),
     sub: "ライブ会場も、花火大会も、駅のホームも。5Gの進化は「爆速」より「どこでも安定」に向かっています。",
-    label: "A",
+    theme: "人混み",
   },
   {
-    kicker: "5G SA 入門ガイド",
     heading: (
       <>
-        速さだけじゃない。
-        <br />
+        速さだけじゃない。<br />
         <span className="text-red-600">安定性</span>の5Gへ。
       </>
     ),
     sub: "5G SAは「速い」よりも「混んでいても使える」を目指した、次世代の通信の仕組みです。",
-    label: "B",
+    theme: "安定性",
   },
   {
-    kicker: "5G SA 入門ガイド",
     heading: (
       <>
-        混雑に強い
-        <br />
+        混雑に強い<br />
         <span className="text-red-600">5G</span>へ。
       </>
     ),
     sub: "人が集まる場所でも、あなたのスマホがちゃんとつながる。5G SAはその実現を目指しています。",
-    label: "C",
+    theme: "混雑対策",
   },
   {
-    kicker: "5G SA 入門ガイド",
     heading: (
       <>
-        ライブでも、
-        <br />
-        ゲームでも。
-        <br />
+        ライブでも、ゲームでも。<br />
         <span className="text-red-600">5Gは整理上手</span>に。
       </>
     ),
     sub: "通信の「渋滞」をなくす新しい仕組み。それが5G SAです。",
-    label: "D",
+    theme: "ゲーム",
   },
 ];
 
 export default function HeroSection() {
-  const [current, setCurrent] = useState(0);
+  const [current, setCurrent] = useState(1); // B案「安定性」を初期表示
   const [fading, setFading] = useState(false);
 
-  const goTo = useCallback((idx: number) => {
+  const goTo = (idx: number) => {
     if (idx === current) return;
     setFading(true);
     setTimeout(() => {
       setCurrent(idx);
       setFading(false);
-    }, 250);
-  }, [current]);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      goTo((current + 1) % copies.length);
-    }, 3800);
-    return () => clearInterval(timer);
-  }, [current, goTo]);
+    }, 220);
+  };
 
   const copy = copies[current];
 
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-white px-4 py-20">
-      {/* grid bg */}
+    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-white px-6 py-24">
+      {/* grid bg — Hero のみ */}
       <div
-        className="absolute inset-0 opacity-[0.035]"
+        className="absolute inset-0 opacity-[0.03]"
         style={{
           backgroundImage:
             "linear-gradient(#e60012 1px, transparent 1px), linear-gradient(to right, #e60012 1px, transparent 1px)",
@@ -94,7 +77,7 @@ export default function HeroSection() {
         {[1, 2, 3].map((i) => (
           <span
             key={i}
-            className="absolute rounded-full border border-red-400"
+            className="absolute rounded-full border border-red-300"
             style={{
               width: `${i * 130}px`,
               height: `${i * 130}px`,
@@ -110,61 +93,61 @@ export default function HeroSection() {
 
       <style>{`
         @keyframes heroRing {
-          0%   { transform: translate(-50%,-50%) scale(0.5); opacity: 0.5; }
+          0%   { transform: translate(-50%,-50%) scale(0.5); opacity: 0.4; }
           100% { transform: translate(-50%,-50%) scale(1.6); opacity: 0; }
         }
       `}</style>
 
       {/* copy */}
       <div
-        className="relative z-10 text-center max-w-2xl mx-auto animate-fade-in-up"
-        style={{ transition: "opacity 0.25s ease", opacity: fading ? 0 : 1 }}
+        className="relative z-10 text-center max-w-xl mx-auto animate-fade-in-up"
+        style={{ transition: "opacity 0.22s ease", opacity: fading ? 0 : 1 }}
       >
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-50 border border-red-200 text-red-600 text-sm font-medium mb-8">
-          <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse inline-block" />
-          {copy.kicker}
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gray-100 text-gray-500 text-xs font-medium mb-8 tracking-widest uppercase">
+          <span className="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse inline-block" />
+          5G SA 入門ガイド
         </div>
 
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight tracking-tight text-gray-900 mb-6">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-snug tracking-tight text-gray-900 mb-6">
           {copy.heading}
         </h1>
 
-        <p className="text-base sm:text-lg text-gray-500 leading-relaxed mb-10 max-w-lg mx-auto">
+        <p className="text-base text-gray-400 leading-relaxed mb-10 max-w-md mx-auto">
           {copy.sub}
         </p>
 
         <a
           href="#experience"
-          className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-red-600 text-white font-semibold text-base shadow-lg hover:bg-red-700 active:scale-95 transition-all"
+          className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-gray-900 text-white font-medium text-sm hover:bg-gray-700 active:scale-95 transition-all"
         >
           あるある体験を見る
-          <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+          <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
             <path d="M10 4v12M4 10l6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
         </a>
       </div>
 
-      {/* copy variant selector */}
-      <div className="relative z-10 flex items-center gap-3 mt-12">
-        <span className="text-xs text-gray-300 mr-1">コピー案</span>
+      {/* theme selector — 興味テーマを選ぶ感じ */}
+      <div className="relative z-10 flex items-center gap-2 mt-14 flex-wrap justify-center">
+        <span className="text-xs text-gray-300 mr-1">気になるテーマ：</span>
         {copies.map((c, i) => (
           <button
-            key={c.label}
+            key={c.theme}
             onClick={() => goTo(i)}
-            className={`flex items-center justify-center w-7 h-7 rounded-full text-xs font-bold transition-all border
+            className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all border
               ${i === current
-                ? "bg-red-600 text-white border-red-600 scale-110"
-                : "bg-white text-gray-400 border-gray-200 hover:border-red-300 hover:text-red-400"
+                ? "bg-red-600 text-white border-red-600"
+                : "bg-white text-gray-400 border-gray-200 hover:border-gray-300 hover:text-gray-600"
               }`}
           >
-            {c.label}
+            {c.theme}
           </button>
         ))}
       </div>
 
       {/* scroll hint */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce opacity-40">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce opacity-25">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
           <path d="M12 5v14M5 12l7 7 7-7" stroke="#374151" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
       </div>
