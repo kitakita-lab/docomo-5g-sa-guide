@@ -102,8 +102,37 @@ export default function ComparisonSection() {
           </p>
         </div>
 
+        {/* building metaphor comparison */}
+        <div className={`grid sm:grid-cols-2 gap-5 mb-10 ${isVisible ? "animate-fade-in-up delay-100" : "opacity-0"}`}>
+          <div className="p-6 rounded-2xl bg-amber-50 border border-amber-100">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-10 h-10 rounded-xl bg-amber-200 flex items-center justify-center text-xl shrink-0">🏠</div>
+              <div>
+                <p className="font-bold text-amber-800 text-sm">NSA ＝ 増築リフォーム</p>
+                <p className="text-xs text-amber-500 mt-0.5">古い土台に新しい部屋を追加</p>
+              </div>
+            </div>
+            <p className="text-xs text-amber-700 leading-relaxed">
+              築20年の家（4Gコア）の上に新しい部屋（5G無線）を増築。部屋は新しいが、水道・電気は古い設備のまま。混雑すると古い配線部分がボトルネックになりやすい。
+            </p>
+          </div>
+
+          <div className="p-6 rounded-2xl bg-red-50 border border-red-100">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-10 h-10 rounded-xl bg-red-200 flex items-center justify-center text-xl shrink-0">🏢</div>
+              <div>
+                <p className="font-bold text-red-800 text-sm">SA ＝ 完全新築ビル</p>
+                <p className="text-xs text-red-400 mt-0.5">土台から全部5G専用で設計</p>
+              </div>
+            </div>
+            <p className="text-xs text-red-700 leading-relaxed">
+              土台から設計した最新ビルに、最新の通信設備を完備。「エレベーター専用」「宅配専用」のように用途ごとに経路が整理されている。
+            </p>
+          </div>
+        </div>
+
         {/* use-case cards */}
-        <div className={`grid sm:grid-cols-2 gap-5 mb-14 ${isVisible ? "animate-fade-in-up delay-100" : "opacity-0"}`}>
+        <div className={`grid sm:grid-cols-2 gap-5 mb-14 ${isVisible ? "animate-fade-in-up delay-200" : "opacity-0"}`}>
           <div className="p-6 rounded-2xl bg-amber-50">
             <div className="flex items-center gap-3 mb-5">
               <div className="w-10 h-10 rounded-xl bg-amber-200 flex items-center justify-center text-xl shrink-0">🏗️</div>
@@ -189,25 +218,6 @@ export default function ComparisonSection() {
               </div>
             </div>
           ))}
-        </div>
-
-        {/* highway metaphor */}
-        <div className={`mt-12 p-6 rounded-2xl bg-gray-50 ${isVisible ? "animate-fade-in-up delay-500" : "opacity-0"}`}>
-          <p className="text-sm font-semibold text-gray-700 text-center mb-5">🛣️ 道路で考えてみよう</p>
-          <div className="grid sm:grid-cols-2 gap-3">
-            <div className="bg-white rounded-xl p-4">
-              <p className="text-xs font-semibold text-amber-700 mb-1.5">🏗️ NSA ＝ 一般道</p>
-              <p className="text-xs text-gray-400 leading-relaxed">
-                みんなが同じ道を共有。ふだんは快適でも、イベントの日は全員が集中して渋滞が起きる。
-              </p>
-            </div>
-            <div className="bg-white rounded-xl p-4">
-              <p className="text-xs font-semibold text-red-600 mb-1.5">🏢 SA ＝ 専用レーンつき高速</p>
-              <p className="text-xs text-gray-400 leading-relaxed">
-                動画用・ゲーム用・通常用と、用途別に専用レーンがある状態。混雑しても各レーンが確保される。
-              </p>
-            </div>
-          </div>
         </div>
 
         {/* CTA */}

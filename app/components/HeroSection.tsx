@@ -113,7 +113,7 @@ export default function HeroSection() {
           {copy.heading}
         </h1>
 
-        <p className="text-base text-gray-400 leading-relaxed mb-10 max-w-md mx-auto">
+        <p className="text-base text-gray-400 leading-normal mb-10 max-w-md mx-auto">
           {copy.sub}
         </p>
 
@@ -128,16 +128,16 @@ export default function HeroSection() {
         </a>
       </div>
 
-      {/* theme pills — 左寄せ、ラベルなし、inactive は極薄 */}
-      <div className="relative z-10 w-full max-w-xl mx-auto mt-12 flex flex-wrap gap-2">
+      {/* theme pills */}
+      <div className="relative z-10 w-full max-w-md mx-auto mt-12 flex flex-wrap gap-2 justify-center">
         {copies.map((c, i) => (
           <button
             key={c.theme}
             onClick={() => goTo(i)}
             className={`px-3 py-1 rounded-full text-xs font-medium transition-all
               ${i === current
-                ? "bg-red-600 text-white"
-                : "text-gray-300 border border-gray-100 hover:text-gray-500 hover:border-gray-200"
+                ? "bg-red-600 text-white border border-red-600"
+                : "bg-white border border-gray-200 text-gray-500 hover:border-gray-300 hover:text-gray-700"
               }`}
           >
             {c.theme}

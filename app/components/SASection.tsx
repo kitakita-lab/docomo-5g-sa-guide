@@ -131,14 +131,14 @@ export default function SASection() {
             {/* consumer impact grid */}
             <div className="grid grid-cols-2 gap-2.5">
               {[
-                { emoji: "👥", label: "混雑時の安定性", value: "UP" },
-                { emoji: "🎮", label: "ゲームの反応", value: "速くなる" },
-                { emoji: "📹", label: "動画の途切れ", value: "減る" },
-                { emoji: "📞", label: "通話品質", value: "向上" },
+                { emoji: "👥", label: "混雑時の安定性", value: "安定UP" },
+                { emoji: "🎮", label: "ゲームの反応", value: "遅延減少" },
+                { emoji: "📹", label: "動画の途切れ", value: "途切れ減" },
+                { emoji: "📞", label: "通話品質", value: "品質UP" },
               ].map(({ emoji, label, value }) => (
                 <div key={label} className="text-center p-3 rounded-xl bg-red-50">
                   <div className="text-xl mb-0.5">{emoji}</div>
-                  <div className="font-bold text-sm text-red-700">{value}</div>
+                  <div className="font-bold text-sm text-red-500">{value}</div>
                   <div className="text-[10px] text-red-400 mt-0.5">{label}</div>
                 </div>
               ))}
