@@ -7,6 +7,7 @@ const sections = [
   { id: "nsa", label: "NSAとは" },
   { id: "sa", label: "SAとは" },
   { id: "comparison", label: "比較" },
+  { id: "faq", label: "FAQ" },
 ];
 
 export default function NavBar() {
@@ -36,26 +37,34 @@ export default function NavBar() {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300
         ${scrolled ? "bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm" : "bg-transparent"}`}
     >
-      <div className="max-w-4xl mx-auto px-5 h-14 flex items-center justify-between gap-4">
-        <a href="#" className="flex items-center gap-2 font-semibold text-gray-900 text-sm shrink-0">
-          <span className="w-6 h-6 rounded-md bg-red-600 flex items-center justify-center text-white text-xs font-bold">5G</span>
-          SA ガイド
-        </a>
+      <div className="h-14 flex items-center max-w-4xl mx-auto w-full">
+        {/* logo — shrink-0で常に表示 */}
+        <div className="pl-4 pr-3 shrink-0">
+          <a href="#" className="flex items-center gap-2 font-semibold text-gray-900 text-sm">
+            <span className="w-6 h-6 rounded-md bg-red-600 flex items-center justify-center text-white text-xs font-bold">5G</span>
+            SA ガイド
+          </a>
+        </div>
 
-        {/* 横スクロール対応 */}
-        <div className="flex items-center gap-1 overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          {sections.map(({ id, label }) => (
-            <a
-              key={id}
-              href={`#${id}`}
-              className={`px-3 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors
-                ${active === id
-                  ? "bg-red-600 text-white"
-                  : "text-gray-400 hover:text-gray-700 hover:bg-gray-100"}`}
-            >
-              {label}
-            </a>
-          ))}
+        {/* 区切り線 */}
+        <div className="h-4 w-px bg-gray-200 shrink-0" />
+
+        {/* tabs — 横スクロール */}
+        <div className="flex-1 overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          <div className="flex items-center gap-x-3 px-4">
+            {sections.map(({ id, label }) => (
+              <a
+                key={id}
+                href={`#${id}`}
+                className={`shrink-0 whitespace-nowrap px-3 py-2 rounded-full text-sm font-medium transition-colors
+                  ${active === id
+                    ? "bg-red-600 text-white"
+                    : "text-gray-400 hover:text-gray-700 hover:bg-gray-100"}`}
+              >
+                {label}
+              </a>
+            ))}
+          </div>
         </div>
       </div>
     </nav>
