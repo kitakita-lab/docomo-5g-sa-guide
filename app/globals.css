@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #1a1a2e;
+  --docomo-red: #e60012;
+  --docomo-red-light: #ff4d5a;
+  --docomo-red-pale: #fff0f0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Meiryo', 'Yu Gothic', sans-serif;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes drawLine {
+  from { stroke-dashoffset: 200; }
+  to   { stroke-dashoffset: 0; }
+}
+
+@keyframes signalPulse {
+  0%   { transform: scale(1);   opacity: 0.8; }
+  50%  { transform: scale(1.15); opacity: 1; }
+  100% { transform: scale(1);   opacity: 0.8; }
+}
+
+@keyframes flowDown {
+  0%   { opacity: 0; transform: translateY(-8px); }
+  50%  { opacity: 1; }
+  100% { opacity: 0; transform: translateY(8px); }
+}
+
+.animate-fade-in-up   { animation: fadeInUp 0.65s ease both; }
+.animate-slide-left   { animation: slideInLeft 0.65s ease both; }
+.animate-slide-right  { animation: slideInRight 0.65s ease both; }
+.animate-signal-pulse { animation: signalPulse 2s ease-in-out infinite; }
+.animate-flow-down    { animation: flowDown 1.5s ease-in-out infinite; }
+
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+.delay-600 { animation-delay: 0.6s; }
+
+.draw-line {
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+}
+.draw-line.animated {
+  animation: drawLine 1s ease forwards;
+}
