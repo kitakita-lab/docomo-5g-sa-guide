@@ -17,14 +17,14 @@ const rows: ComparisonRow[] = [
     category: "混雑時の安定性",
     icon: "👥",
     nsa: "4Gコアが詰まりやすい",
-    sa: "用途別に通信を整理できる",
+    sa: "用途別に通信を整理",
     fit: "sa",
   },
   {
     category: "ゲーム・動画の遅延",
     icon: "🎮",
     nsa: "数十ms程度",
-    sa: "大幅に改善（1〜5ms級）",
+    sa: "1〜5ms級に改善",
     fit: "sa",
   },
   {
@@ -37,29 +37,29 @@ const rows: ComparisonRow[] = [
   {
     category: "コアネットワーク",
     icon: "🖥️",
-    nsa: "4G EPC（既存）",
-    sa: "5G Core（新設）",
+    nsa: "4G EPC",
+    sa: "5G Core",
     fit: "sa",
   },
   {
-    category: "通信の専用レーン",
+    category: "専用レーン",
     icon: "🛣️",
-    nsa: "なし（全員が共有）",
-    sa: "あり（用途別に確保）",
+    nsa: "なし（共有）",
+    sa: "あり（用途別）",
     fit: "sa",
   },
   {
     category: "導入コスト",
     icon: "💰",
-    nsa: "低い（既存設備流用）",
+    nsa: "低い（設備流用）",
     sa: "高い（全新設）",
     fit: "nsa",
   },
   {
-    category: "将来の新サービス",
+    category: "将来サービス",
     icon: "🔮",
     nsa: "限定的",
-    sa: "幅広く対応できる",
+    sa: "幅広く対応可",
     fit: "sa",
   },
 ];
@@ -176,44 +176,44 @@ export default function ComparisonSection() {
           <div className="grid grid-cols-7 gap-2 mb-3">
             <div className="col-span-2" />
             <div className="col-span-2 text-center">
-              <div className="px-3 py-1.5 rounded-xl bg-amber-100 text-amber-700 font-semibold text-xs">NSA</div>
+              <div className="px-3 py-1.5 rounded-xl bg-amber-50 text-amber-600 font-semibold text-xs">NSA</div>
             </div>
             <div className="col-span-1 flex items-center justify-center text-gray-200 text-base">vs</div>
             <div className="col-span-2 text-center">
-              <div className="px-3 py-1.5 rounded-xl bg-red-100 text-red-600 font-semibold text-xs">SA</div>
+              <div className="px-3 py-1.5 rounded-xl bg-red-50 text-red-500 font-semibold text-xs">SA</div>
             </div>
           </div>
         </div>
 
-        <div className="space-y-2">
+        <div className="space-y-2.5">
           {rows.map((row, i) => (
             <div
               key={row.category}
-              className={`grid grid-cols-7 gap-1 items-stretch rounded-xl overflow-hidden border border-gray-50
+              className={`grid grid-cols-7 gap-1 items-stretch rounded-xl overflow-hidden
                 ${isVisible ? `animate-fade-in-up delay-${Math.min((i + 2) * 80, 500)}` : "opacity-0"}`}
             >
-              <div className="col-span-2 flex items-center gap-2 p-3 bg-gray-50">
+              <div className="col-span-2 flex items-center gap-2 p-3 bg-gray-50 rounded-l-xl">
                 <span className="text-base shrink-0">{row.icon}</span>
-                <p className="text-xs text-gray-600 leading-tight">{row.category}</p>
+                <p className="text-xs text-gray-500 leading-tight">{row.category}</p>
               </div>
 
               <div
-                className="col-span-2 flex flex-col items-center justify-center p-2.5 text-center"
-                style={{ backgroundColor: row.fit === "nsa" ? "#fefcf3" : "#fff" }}
+                className="col-span-2 flex flex-col items-center justify-center p-3 text-center"
+                style={{ backgroundColor: row.fit === "nsa" ? "#fdfaf2" : "#fafafa" }}
               >
-                <p className={`text-xs leading-tight mb-0.5 ${row.fit === "nsa" ? "text-amber-600" : "text-gray-400"}`}>{row.nsa}</p>
+                <p className={`text-xs leading-snug mb-0.5 ${row.fit === "nsa" ? "text-amber-600" : "text-gray-400"}`}>{row.nsa}</p>
                 <FitBadge fit={row.fit} side="nsa" />
               </div>
 
-              <div className="col-span-1 flex items-center justify-center bg-white">
-                <div className="w-px h-5 bg-gray-100" />
+              <div className="col-span-1 flex items-center justify-center bg-gray-50/50">
+                <div className="w-px h-4 bg-gray-100" />
               </div>
 
               <div
-                className="col-span-2 flex flex-col items-center justify-center p-2.5 text-center"
-                style={{ backgroundColor: row.fit === "sa" ? "#fff7f7" : "#fff" }}
+                className="col-span-2 flex flex-col items-center justify-center p-3 text-center rounded-r-xl"
+                style={{ backgroundColor: row.fit === "sa" ? "#fff8f8" : "#fafafa" }}
               >
-                <p className={`text-xs leading-tight mb-0.5 ${row.fit === "sa" ? "text-red-500" : "text-gray-400"}`}>{row.sa}</p>
+                <p className={`text-xs leading-snug mb-0.5 ${row.fit === "sa" ? "text-red-400" : "text-gray-400"}`}>{row.sa}</p>
                 <FitBadge fit={row.fit} side="sa" />
               </div>
             </div>

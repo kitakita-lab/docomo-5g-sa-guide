@@ -119,7 +119,7 @@ export default function SASection() {
             </div>
           </div>
 
-          <div className={`space-y-4 ${isVisible ? "animate-slide-right delay-300" : "opacity-0"}`}>
+          <div className={`space-y-6 ${isVisible ? "animate-slide-right delay-300" : "opacity-0"}`}>
             <div className="bg-white border border-gray-100 rounded-2xl p-5">
               <p className="text-sm font-semibold text-gray-700 mb-1.5">🏢 たとえ話：完全新築ビル</p>
               <p className="text-xs text-gray-400 leading-relaxed">
@@ -131,10 +131,10 @@ export default function SASection() {
             {/* consumer impact grid */}
             <div className="grid grid-cols-2 gap-2.5">
               {[
-                { emoji: "👥", label: "混雑時の安定性", value: "安定UP" },
-                { emoji: "🎮", label: "ゲームの反応", value: "遅延減少" },
-                { emoji: "📹", label: "動画の途切れ", value: "途切れ減" },
-                { emoji: "📞", label: "通話品質", value: "品質UP" },
+                { emoji: "👥", label: "混雑時の安定性", value: "混雑でも安定" },
+                { emoji: "🎮", label: "ゲームの反応", value: "ゲームが快適" },
+                { emoji: "📹", label: "動画の途切れ", value: "配信が止まりにくい" },
+                { emoji: "📞", label: "通話品質", value: "通話がクリア" },
               ].map(({ emoji, label, value }) => (
                 <div key={label} className="text-center p-3 rounded-xl bg-red-50">
                   <div className="text-xl mb-0.5">{emoji}</div>

@@ -48,7 +48,7 @@ export default function NavBar() {
             <a
               key={id}
               href={`#${id}`}
-              className={`px-3 py-1.5 rounded-full text-sm font-medium whitespace-nowrap transition-colors
+              className={`px-3 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors
                 ${active === id
                   ? "bg-red-600 text-white"
                   : "text-gray-400 hover:text-gray-700 hover:bg-gray-100"}`}

@@ -62,7 +62,7 @@ export default function HeroSection() {
   const copy = copies[current];
 
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-white px-6 py-24">
+    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-white px-6 py-16">
       {/* grid bg — Hero のみ・空気感レベル */}
       <div
         className="absolute inset-0 opacity-[0.018]"
@@ -145,10 +145,11 @@ export default function HeroSection() {
         ))}
       </div>
 
-      {/* scroll hint */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce opacity-20">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-          <path d="M12 5v14M5 12l7 7 7-7" stroke="#374151" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+      {/* scroll hint — 空気レベル */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5">
+        <span className="text-[10px] text-gray-300 tracking-widest uppercase">Scroll</span>
+        <svg width="14" height="8" viewBox="0 0 14 8" fill="none">
+          <path d="M1 1l6 6 6-6" stroke="#d1d5db" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
       </div>
     </section>
