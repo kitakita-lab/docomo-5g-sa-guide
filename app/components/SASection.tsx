@@ -69,22 +69,22 @@ const benefits = [
   {
     icon: "👥",
     title: "混雑時も安定してつながる",
-    desc: "ライブ会場やフェスでも、用途ごとに通信を整理できるため安定しやすい。",
+    desc: "ライブ・フェス会場でも、用途ごとに整理されるため安定しやすい。",
   },
   {
     icon: "🎮",
     title: "ゲームの操作がサクサク",
-    desc: "遅延を大幅に抑えられるため、ボタンを押してから反応するまでのラグが小さくなる。",
+    desc: "遅延が大幅に抑えられ、操作とゲーム反応のラグが小さくなる。",
   },
   {
     icon: "📹",
     title: "動画・ライブ配信が途切れない",
-    desc: "バッファリングが起きにくくなり、イベント会場での「くるくる」が減る。",
+    desc: "バッファリングが起きにくくなり、「くるくる」が減る。",
   },
   {
     icon: "📞",
     title: "通話・ビデオ通話が安定",
-    desc: "混雑した場所でも声が途切れにくくなり、通話品質が向上する。",
+    desc: "混雑した場所でも声が途切れにくくなる。",
   },
 ];
 
@@ -152,16 +152,16 @@ export default function SASection() {
           <p className="text-xs text-gray-400 text-center mb-8">専門知識ゼロでも実感できること</p>
         </div>
 
-        <div className="grid sm:grid-cols-2 gap-4 mb-10">
+        <div className="grid sm:grid-cols-2 gap-3 mb-10">
           {benefits.map((b, i) => (
             <div
               key={b.title}
               className={`flex gap-3 p-5 rounded-2xl bg-white border border-gray-100
                 ${isVisible ? `animate-fade-in-up delay-${(i + 3) * 100}` : "opacity-0"}`}
             >
-              <div className="text-xl shrink-0">{b.icon}</div>
+              <div className="text-2xl shrink-0">{b.icon}</div>
               <div>
-                <p className="text-sm font-semibold text-gray-700 mb-1">{b.title}</p>
+                <p className="text-sm font-medium text-gray-700 mb-1">{b.title}</p>
                 <p className="text-xs text-gray-400 leading-relaxed">{b.desc}</p>
               </div>
             </div>

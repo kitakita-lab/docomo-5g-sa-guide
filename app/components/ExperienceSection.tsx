@@ -2,11 +2,13 @@
 
 import { useScrollAnimation } from "./useScrollAnimation";
 
+type UIType = "spinner" | "ping" | "progress" | "unread" | "bars" | "mapFrozen";
+
 interface ScenarioCard {
   emoji: string;
   scene: string;
   story: string;
-  uiType: "spinner" | "ping" | "progress" | "unread" | "bars";
+  uiType: UIType;
 }
 
 const scenarios: ScenarioCard[] = [
@@ -44,7 +46,7 @@ const scenarios: ScenarioCard[] = [
     emoji: "🛍️",
     scene: "ショッピングモール",
     story: "地図アプリが固まって、迷子になりかけた",
-    uiType: "spinner",
+    uiType: "mapFrozen", // 地図フリーズUIへ変更
   },
 ];
 
@@ -119,13 +121,41 @@ function BarsUI() {
   );
 }
 
-function CardUI({ type }: { type: ScenarioCard["uiType"] }) {
+// ショッピングモール用：地図フリーズUI
+function MapFrozenUI() {
+  return (
+    <div className="px-3 py-2 bg-gray-50 rounded-lg">
+      <div className="relative h-10 rounded overflow-hidden">
+        {/* 地図タイルもどき */}
+        <div className="grid grid-cols-5 grid-rows-2 gap-px h-full">
+          {["bg-green-100","bg-gray-100","bg-blue-100","bg-gray-100","bg-green-100",
+            "bg-gray-100","bg-gray-200","bg-gray-100","bg-blue-100","bg-gray-100"].map((c, i) => (
+            <div key={i} className={`${c}`} />
+          ))}
+        </div>
+        {/* 現在地マーカー */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+          <div className="w-3 h-3 rounded-full bg-blue-500 border-2 border-white shadow-sm" />
+        </div>
+        {/* フリーズオーバーレイ */}
+        <div className="absolute inset-0 bg-white/50 flex items-center justify-center">
+          <span className="text-[9px] text-gray-500 font-medium bg-white/90 px-2 py-0.5 rounded shadow-sm">
+            応答なし…
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function CardUI({ type }: { type: UIType }) {
   switch (type) {
-    case "spinner":  return <SpinnerUI />;
-    case "ping":     return <PingUI />;
-    case "progress": return <ProgressUI />;
-    case "unread":   return <UnreadUI />;
-    case "bars":     return <BarsUI />;
+    case "spinner":   return <SpinnerUI />;
+    case "ping":      return <PingUI />;
+    case "progress":  return <ProgressUI />;
+    case "unread":    return <UnreadUI />;
+    case "bars":      return <BarsUI />;
+    case "mapFrozen": return <MapFrozenUI />;
   }
 }
 

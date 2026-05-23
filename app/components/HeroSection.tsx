@@ -3,16 +3,7 @@
 import { useState } from "react";
 
 const copies = [
-  {
-    heading: (
-      <>
-        人混みでも、<br />
-        <span className="text-red-600">つながりやすく</span>。
-      </>
-    ),
-    sub: "ライブ会場も、花火大会も、駅のホームも。5Gの進化は「爆速」より「どこでも安定」に向かっています。",
-    theme: "人混み",
-  },
+  // 「安定性」を先頭固定・初期表示
   {
     heading: (
       <>
@@ -36,6 +27,16 @@ const copies = [
   {
     heading: (
       <>
+        人混みでも、<br />
+        <span className="text-red-600">つながりやすく</span>。
+      </>
+    ),
+    sub: "ライブ会場も、花火大会も、駅のホームも。5Gの進化は「爆速」より「どこでも安定」に向かっています。",
+    theme: "人混み",
+  },
+  {
+    heading: (
+      <>
         ライブでも、ゲームでも。<br />
         <span className="text-red-600">5Gは整理上手</span>に。
       </>
@@ -46,7 +47,7 @@ const copies = [
 ];
 
 export default function HeroSection() {
-  const [current, setCurrent] = useState(1); // B案「安定性」を初期表示
+  const [current, setCurrent] = useState(0); // 「安定性」が先頭で初期表示
   const [fading, setFading] = useState(false);
 
   const goTo = (idx: number) => {
@@ -62,9 +63,9 @@ export default function HeroSection() {
 
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-white px-6 py-24">
-      {/* grid bg — Hero のみ */}
+      {/* grid bg — Hero のみ・空気感レベル */}
       <div
-        className="absolute inset-0 opacity-[0.03]"
+        className="absolute inset-0 opacity-[0.018]"
         style={{
           backgroundImage:
             "linear-gradient(#e60012 1px, transparent 1px), linear-gradient(to right, #e60012 1px, transparent 1px)",
@@ -72,12 +73,12 @@ export default function HeroSection() {
         }}
       />
 
-      {/* pulse rings */}
+      {/* pulse rings — 薄く、文字を邪魔しない */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
         {[1, 2, 3].map((i) => (
           <span
             key={i}
-            className="absolute rounded-full border border-red-300"
+            className="absolute rounded-full border border-gray-200"
             style={{
               width: `${i * 130}px`,
               height: `${i * 130}px`,
@@ -93,7 +94,7 @@ export default function HeroSection() {
 
       <style>{`
         @keyframes heroRing {
-          0%   { transform: translate(-50%,-50%) scale(0.5); opacity: 0.4; }
+          0%   { transform: translate(-50%,-50%) scale(0.5); opacity: 0.2; }
           100% { transform: translate(-50%,-50%) scale(1.6); opacity: 0; }
         }
       `}</style>
@@ -103,7 +104,7 @@ export default function HeroSection() {
         className="relative z-10 text-center max-w-xl mx-auto animate-fade-in-up"
         style={{ transition: "opacity 0.22s ease", opacity: fading ? 0 : 1 }}
       >
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gray-100 text-gray-500 text-xs font-medium mb-8 tracking-widest uppercase">
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gray-100 text-gray-400 text-xs font-medium mb-8 tracking-widest uppercase">
           <span className="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse inline-block" />
           5G SA 入門ガイド
         </div>
@@ -127,17 +128,16 @@ export default function HeroSection() {
         </a>
       </div>
 
-      {/* theme selector — 興味テーマを選ぶ感じ */}
-      <div className="relative z-10 flex items-center gap-2 mt-14 flex-wrap justify-center">
-        <span className="text-xs text-gray-300 mr-1">気になるテーマ：</span>
+      {/* theme pills — 左寄せ、ラベルなし、inactive は極薄 */}
+      <div className="relative z-10 w-full max-w-xl mx-auto mt-12 flex flex-wrap gap-2">
         {copies.map((c, i) => (
           <button
             key={c.theme}
             onClick={() => goTo(i)}
-            className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all border
+            className={`px-3 py-1 rounded-full text-xs font-medium transition-all
               ${i === current
-                ? "bg-red-600 text-white border-red-600"
-                : "bg-white text-gray-400 border-gray-200 hover:border-gray-300 hover:text-gray-600"
+                ? "bg-red-600 text-white"
+                : "text-gray-300 border border-gray-100 hover:text-gray-500 hover:border-gray-200"
               }`}
           >
             {c.theme}
@@ -146,7 +146,7 @@ export default function HeroSection() {
       </div>
 
       {/* scroll hint */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce opacity-25">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce opacity-20">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
           <path d="M12 5v14M5 12l7 7 7-7" stroke="#374151" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>

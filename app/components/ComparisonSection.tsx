@@ -65,8 +65,7 @@ const rows: ComparisonRow[] = [
 ];
 
 function FitBadge({ fit, side }: { fit: Fit; side: "nsa" | "sa" }) {
-  if (fit === "both") return <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-gray-100 text-gray-400">どちらも</span>;
-  if (fit === side)   return <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-green-50 text-green-600 font-medium">✓ 得意</span>;
+  if (fit === side) return <span className="text-[9px] text-emerald-500 font-medium">✓</span>;
   return null;
 }
 
@@ -169,17 +168,23 @@ export default function ComparisonSection() {
                 <p className="text-xs text-gray-600 leading-tight">{row.category}</p>
               </div>
 
-              <div className={`col-span-2 flex flex-col items-center justify-center p-2.5 text-center ${row.fit === "nsa" ? "bg-amber-50" : "bg-white"}`}>
-                <p className={`text-xs leading-tight mb-1 ${row.fit === "nsa" ? "text-amber-700" : "text-gray-400"}`}>{row.nsa}</p>
+              <div
+                className="col-span-2 flex flex-col items-center justify-center p-2.5 text-center"
+                style={{ backgroundColor: row.fit === "nsa" ? "#fefcf3" : "#fff" }}
+              >
+                <p className={`text-xs leading-tight mb-0.5 ${row.fit === "nsa" ? "text-amber-600" : "text-gray-400"}`}>{row.nsa}</p>
                 <FitBadge fit={row.fit} side="nsa" />
               </div>
 
               <div className="col-span-1 flex items-center justify-center bg-white">
-                <div className="w-px h-6 bg-gray-100" />
+                <div className="w-px h-5 bg-gray-100" />
               </div>
 
-              <div className={`col-span-2 flex flex-col items-center justify-center p-2.5 text-center ${row.fit === "sa" ? "bg-red-50" : "bg-white"}`}>
-                <p className={`text-xs leading-tight mb-1 ${row.fit === "sa" ? "text-red-600" : "text-gray-400"}`}>{row.sa}</p>
+              <div
+                className="col-span-2 flex flex-col items-center justify-center p-2.5 text-center"
+                style={{ backgroundColor: row.fit === "sa" ? "#fff7f7" : "#fff" }}
+              >
+                <p className={`text-xs leading-tight mb-0.5 ${row.fit === "sa" ? "text-red-500" : "text-gray-400"}`}>{row.sa}</p>
                 <FitBadge fit={row.fit} side="sa" />
               </div>
             </div>
